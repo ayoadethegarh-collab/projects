@@ -1,1 +1,443 @@
+/* Reset CSS by Amaka Ndukwu */
 
+/* making use of :where to allow for low specificity making it easy to override */
+
+
+/* 1. border-box for box model */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    position: relative;
+}
+
+/* 2. remove default margin 
+padding is optional but i do this because of lists*/
+
+:where(:not(dialog)) {
+    margin: 0;
+    padding: 0;
+}
+
+
+/* 3. great for in-page linking */
+@media(prefers-reduced-motion:no-preference) {
+    :where(html) {
+        scroll-behavior: smooth;
+    }
+}
+
+/* 4. line height and text rendering improvement */
+:where(html) {
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* 5. ensure full viewport height */
+:where(html, body) {
+    min-block-size: 100%;
+}
+
+/* 6. improve line wrapping */
+:where(h1, h2, h3,
+    h4, h5, h6) {
+    text-wrap: balance;
+}
+
+:where(p) {
+    text-wrap: pretty;
+}
+
+:where(figure)>:where(figcaption) {
+    text-wrap: balance;
+}
+
+:where(p, h1, h2, h3,
+    h4, h5, h6) {
+    overflow-wrap: break-word;
+}
+
+
+
+/* 7. making media elements block-level */
+:where(img,
+    svg,
+    video,
+    canvas,
+    picture,
+    audio,
+    iframe,
+    embed,
+    object) {
+    display: block
+}
+
+:where(img, svg, video, canvas, picture) {
+    block-size: auto;
+    max-inline-size: 100%
+}
+
+/* 8. inherit font and letter spacing for form controls */
+:where(input,
+    button,
+    textarea,
+    select),
+:where(input[type=file])::-webkit-file-upload-button {
+    font: inherit;
+    letter-spacing: inherit
+}
+
+/* 9. textarea can only resized vertically and will grow to adjust its content */
+:where(textarea) {
+    resize: vertical;
+   field-sizing: content;
+}
+
+/* 10. table */
+:where(table) {
+    width: fit-content;
+    border-collapse: collapse;
+}
+
+:where(pre) {
+    direction: ltr;
+    max-inline-size: max-content;
+    min-inline-size: 0;
+    white-space: pre;
+    writing-mode: lr
+}
+
+:where(a[href],
+    area,
+    button,
+    input:not([type=text],
+        [type=email],
+        [type=number],
+        [type=password],
+        [type=""],
+        [type=tel],
+        [type=url]),
+    label[for],
+    select,
+    summary,
+    [tabindex]:not([tabindex*="-"],
+        pre)) {
+    cursor: pointer
+}
+
+/*  this will disable additional non-standard gestures such as double-tap to zoom*/
+:where(a[href],
+    area,
+    button,
+    input,
+    label[for],
+    select,
+    summary,
+    textarea,
+    [tabindex]:not([tabindex*="-"])) {
+    touch-action: manipulation
+}
+
+
+/* my css */
+
+:root {
+    /* also known as 'html' */
+
+    --purple: #2D2641;
+    --gray1: #837d88;
+    --white: white;
+    --blavk: black;
+    --gray2: #2c2830;
+
+}
+
+body{
+    font-family: "Karla";
+}
+
+a{
+    text-decoration: none;
+}
+
+header, section, footer {
+    padding-inline: 10vw;
+}
+
+h1{
+    font-family: "DM Serif Display";
+    font-size: 72px;
+    font-weight: 400;
+    line-height: 90%;
+    letter-spacing: -1px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+
+    
+
+}
+
+
+
+header {
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--white);
+    padding-top: 20px;
+    padding-bottom: 20px;
+    align-items: baseline;
+
+}
+
+.links {
+    display: flex;
+    column-gap: 24px;
+    align-items: center;
+}
+
+.links a{
+    text-transform: uppercase;
+    color: var(--gray1);
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 1.5;
+    letter-spacing: 1.5px;
+    
+    &:hover {
+        color: var(--gray2);
+    }
+
+}
+
+.link-button {
+    border: 1px solid currentColor;
+    padding: 12px 30px;
+    color: var(--gray2);
+}
+
+.hero {
+    display: flex;
+    background-image:url(images/Right-Background-Shapes.svg), linear-gradient(to bottom, var(--purple) 80%, var(--white) 20%);
+    background-repeat: no-repeat no-repeat;
+    background-position: top right;
+    background-size: 20%, 100%;
+    padding-top: 10vh;
+    column-gap: 32px;
+
+
+    >div {
+        flex-basis: 50%;
+    }
+}
+.left-hand {
+    color: var(--white );
+
+    p{
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 165%;
+    margin-bottom: 20px;
+
+}
+}
+.wht-btn {
+    color: var(--white);
+
+    &:hover {
+        background-color: var(--white);
+        color: var(--purple);
+    }
+}
+
+.left_hand_image {
+    position: absolute;
+    top: 24%;
+    left: 0;
+}
+
+.features h2 {
+    font-family: "DM Serif Display";
+    font-weight: 400;
+    font-size: clamp(2.25rem, 6vw, 4.5rem);
+    line-height: 90%;
+    letter-spacing: -1px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    
+}
+
+.features {
+    display: flex;
+    gap: 2rem;
+    flex-flow: column;
+    margin-top: 70px;
+    
+    
+}
+.card {
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+    padding: 20px;
+}
+.card :nth-of-type {
+    flex: 1;
+}
+
+.card img{
+    width: 86px;
+    height: 86px;
+    border-radius: 50%;
+}
+.card h3{
+    font-family: "DM Serif Display";
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 135%;
+    letter-spacing: 0.5px;
+    
+}
+.card p{
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 165%;
+
+    
+}
+
+.sector {
+    margin-top: 60px;
+    margin-bottom: 90px;
+}
+.work {
+    display: flex;  
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--purple);
+    background-image:url(images/Right-Background-Shapes.svg), linear-gradient(to bottom, var(--purple) 100%, var(--white) 0%);
+    background-repeat: no-repeat no-repeat;
+    background-position: top right;
+    background-size: 20%, 100%;
+    padding: 20px 50px; 
+    height: 250px;
+    gap: 3px;
+    
+
+}
+.work h2{
+    font-family: "DM Serif Display";
+    font-weight: 400;
+    font-size: 56px;
+    max-width: 40ch;
+    color: var(--white);
+    line-height: 100%;
+    letter-spacing: -0.8px;
+    
+}
+.work a{
+    font-size: 13px;
+    color: var(--white);
+    border: 1px solid var(--white);
+    padding: 10px 20px;
+    text-transform: uppercase;
+    font-weight: 700;
+    text-align: center;
+    line-height: 114.9%;
+    letter-spacing: 1.5px;
+}
+.work-btn {
+    color: var(--white);
+
+    &:hover {
+        background-color: var(--white);
+        color: var(--purple);
+    }
+
+}
+
+footer {
+    height: 393px;
+    padding-top: 70px;
+    padding-bottom: 40px;
+     background-color: var(--white);
+    background-image:url(images/Left-Background-Shapes.svg), linear-gradient(to bottom, var(--white) 100%, var(--white) 0%);
+    background-repeat: no-repeat no-repeat;
+    background-position: top left;
+    background-size: 15%, 100%;
+}
+
+.footer-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+    >div{
+        flex-basis: 50%;
+    }
+
+}
+.smedia {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+}
+.footer-column {
+    text-decoration: none;
+    justify-content: space-between;
+}
+.footer-column h4 {
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    line-height: 114.9%;
+    font-weight: 700;
+    text-transform: uppercase;
+
+}
+
+.footer-column a {
+    display: block;
+    color: var(--blavk);
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    line-height: 114.9%;
+    font-weight: 700;
+    text-transform: uppercase;
+
+
+}
+
+
+@media screen and (max-width: 600px) {
+   .hero {
+      flex-direction: column-reverse;
+      padding: 0;
+      background-image: url(images/Right-Background-Shapes.svg), linear-gradient(to bottom, var(--purple) 100%, var(--white) 0%); ;
+      background-size: 100%, 100%;
+      background-position: center left;
+
+   
+    }
+
+   .left-hand {
+    padding: 80px 20px;
+    text-align: center;
+   }
+
+   svg {
+    display: none;
+   }
+
+   h1 {
+    margin-top: 0;
+   }
+
+   
+}
